@@ -1,0 +1,414 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// data/schemes.js  –  Yojana Setu dummy scheme dataset (15 schemes)
+// ─────────────────────────────────────────────────────────────────────────────
+
+const schemes = [
+  {
+    id: "1",
+    name: "PM Kisan Samman Nidhi",
+    shortDescription:
+      "Direct income support of ₹6,000 per year to small and marginal farmers.",
+    description:
+      "Under PM-KISAN, all landholding farmers' families receive income support of ₹6,000 per year in three equal installments of ₹2,000 each. The fund is directly transferred to the bank accounts of the beneficiaries.",
+    ministry: "Ministry of Agriculture & Farmers Welfare",
+    launchedYear: 2019,
+    category: "Agriculture",
+    imageEmoji: "🌾",
+    benefits: [
+      "₹6,000 annual financial assistance",
+      "Direct bank transfer (DBT)",
+      "No intermediaries",
+    ],
+    applicationUrl: "https://pmkisan.gov.in",
+    eligibility: {
+      occupation: ["Farmer"],
+      minAge: 18,
+      maxAge: 99,
+      maxIncome: 200000,
+      gender: ["Male", "Female", "Other"],
+      category: ["General", "OBC", "SC", "ST"],
+      states: ["All"],
+    },
+  },
+  {
+    id: "2",
+    name: "PM Ujjwala Yojana",
+    shortDescription:
+      "Free LPG connections to women from BPL households for clean cooking fuel.",
+    description:
+      "Pradhan Mantri Ujjwala Yojana (PMUY) aims to safeguard the health of women and children by providing clean cooking fuel – LPG so that they don't have to compromise their health in smoky kitchens.",
+    ministry: "Ministry of Petroleum and Natural Gas",
+    launchedYear: 2016,
+    category: "Women Welfare",
+    imageEmoji: "🔥",
+    benefits: [
+      "Free LPG connection",
+      "First refill free",
+      "Health & environment benefits",
+    ],
+    applicationUrl: "https://pmuy.gov.in",
+    eligibility: {
+      occupation: ["Farmer", "Employee", "Self-Employed", "Unemployed", "Other"],
+      minAge: 18,
+      maxAge: 99,
+      maxIncome: 100000,
+      gender: ["Female"],
+      category: ["General", "OBC", "SC", "ST"],
+      states: ["All"],
+    },
+  },
+  {
+    id: "3",
+    name: "National Scholarship Portal (NSP)",
+    shortDescription:
+      "Central scholarships for students from minority, SC/ST, and OBC communities.",
+    description:
+      "National Scholarship Portal is a one-stop platform for students to apply for various central and state government scholarships. It covers Pre-Matric, Post-Matric scholarships and merit-based scholarships.",
+    ministry: "Ministry of Electronics & IT",
+    launchedYear: 2015,
+    category: "Education",
+    imageEmoji: "📚",
+    benefits: [
+      "Annual scholarship amount",
+      "Covers tuition & living expenses",
+      "Renewable annually",
+    ],
+    applicationUrl: "https://scholarships.gov.in",
+    eligibility: {
+      occupation: ["Student"],
+      minAge: 5,
+      maxAge: 30,
+      maxIncome: 250000,
+      gender: ["Male", "Female", "Other"],
+      category: ["OBC", "SC", "ST"],
+      states: ["All"],
+    },
+  },
+  {
+    id: "4",
+    name: "Ayushman Bharat – PM-JAY",
+    shortDescription:
+      "Health cover of ₹5 lakh per family per year for secondary and tertiary hospitalisation.",
+    description:
+      "Pradhan Mantri Jan Arogya Yojana (PM-JAY) provides a health cover of ₹5 lakh per family per year for secondary and tertiary hospitalization across public and private empanelled hospitals across India.",
+    ministry: "Ministry of Health and Family Welfare",
+    launchedYear: 2018,
+    category: "Health",
+    imageEmoji: "🏥",
+    benefits: [
+      "₹5 lakh health cover",
+      "Cashless treatment",
+      "Covers 1,929 procedures",
+    ],
+    applicationUrl: "https://pmjay.gov.in",
+    eligibility: {
+      occupation: ["Farmer", "Employee", "Self-Employed", "Unemployed", "Other"],
+      minAge: 0,
+      maxAge: 99,
+      maxIncome: 200000,
+      gender: ["Male", "Female", "Other"],
+      category: ["General", "OBC", "SC", "ST"],
+      states: ["All"],
+    },
+  },
+  {
+    id: "5",
+    name: "Pradhan Mantri Awas Yojana (Urban)",
+    shortDescription:
+      "Housing for All mission – subsidy on home loans for EWS/LIG/MIG categories.",
+    description:
+      "PM Awas Yojana (Urban) provides housing subsidy to Economically Weaker Sections, Low Income Groups and Middle Income Groups through Credit Linked Subsidy Scheme (CLSS).",
+    ministry: "Ministry of Housing and Urban Affairs",
+    launchedYear: 2015,
+    category: "Housing",
+    imageEmoji: "🏠",
+    benefits: [
+      "Up to ₹2.67 lakh interest subsidy",
+      "Affordable home loans",
+      "Pucca house guarantee",
+    ],
+    applicationUrl: "https://pmaymis.gov.in",
+    eligibility: {
+      occupation: ["Employee", "Self-Employed", "Farmer", "Unemployed", "Other"],
+      minAge: 21,
+      maxAge: 99,
+      maxIncome: 600000,
+      gender: ["Male", "Female", "Other"],
+      category: ["General", "OBC", "SC", "ST"],
+      states: ["All"],
+    },
+  },
+  {
+    id: "6",
+    name: "Beti Bachao Beti Padhao",
+    shortDescription:
+      "Welfare scheme for girl child – promotes education and prevents gender-biased sex selection.",
+    description:
+      "Beti Bachao Beti Padhao scheme addresses declining Child Sex Ratio (CSR) and related issues of women empowerment, focussing on multi-sectoral interventions for survival, protection and education of the girl child.",
+    ministry: "Ministry of Women and Child Development",
+    launchedYear: 2015,
+    category: "Women Welfare",
+    imageEmoji: "👧",
+    benefits: [
+      "Educational support for girls",
+      "Financial incentives",
+      "Awareness programs",
+    ],
+    applicationUrl: "https://wcd.nic.in",
+    eligibility: {
+      occupation: ["Student", "Unemployed"],
+      minAge: 0,
+      maxAge: 18,
+      maxIncome: 300000,
+      gender: ["Female"],
+      category: ["General", "OBC", "SC", "ST"],
+      states: ["All"],
+    },
+  },
+  {
+    id: "7",
+    name: "PM Mudra Yojana",
+    shortDescription:
+      "Loans up to ₹10 lakh for non-corporate, non-farm small/micro enterprises.",
+    description:
+      "Pradhan Mantri MUDRA Yojana (PMMY) offers collateral-free loans under three categories — Shishu (up to ₹50,000), Kishore (₹50,001–₹5 lakh), and Tarun (₹5–10 lakh) — to micro-enterprises.",
+    ministry: "Ministry of Finance",
+    launchedYear: 2015,
+    category: "Entrepreneurship",
+    imageEmoji: "💼",
+    benefits: [
+      "Loans up to ₹10 lakh",
+      "No collateral required",
+      "Low interest rates",
+    ],
+    applicationUrl: "https://mudra.org.in",
+    eligibility: {
+      occupation: ["Self-Employed", "Unemployed", "Other"],
+      minAge: 18,
+      maxAge: 60,
+      maxIncome: 500000,
+      gender: ["Male", "Female", "Other"],
+      category: ["General", "OBC", "SC", "ST"],
+      states: ["All"],
+    },
+  },
+  {
+    id: "8",
+    name: "Post Matric Scholarship for SC Students",
+    shortDescription:
+      "Scholarships for SC students studying at post-matriculation or post-secondary stage.",
+    description:
+      "The scheme provides financial assistance to SC students studying at post-matriculation or post-secondary stage through state governments so that they can complete their education.",
+    ministry: "Ministry of Social Justice and Empowerment",
+    launchedYear: 1944,
+    category: "Education",
+    imageEmoji: "🎓",
+    benefits: [
+      "Maintenance allowance",
+      "Reimbursement of compulsory fees",
+      "Study tour charges",
+    ],
+    applicationUrl: "https://scholarships.gov.in",
+    eligibility: {
+      occupation: ["Student"],
+      minAge: 14,
+      maxAge: 30,
+      maxIncome: 250000,
+      gender: ["Male", "Female", "Other"],
+      category: ["SC"],
+      states: ["All"],
+    },
+  },
+  {
+    id: "9",
+    name: "Startup India Seed Fund",
+    shortDescription:
+      "Financial assistance to startups for proof of concept, prototype, and market entry.",
+    description:
+      "Startup India Seed Fund Scheme (SISFS) provides financial assistance to startups for proof of concept, prototype development, product trials, market entry, and commercialization.",
+    ministry: "DPIIT, Ministry of Commerce and Industry",
+    launchedYear: 2021,
+    category: "Entrepreneurship",
+    imageEmoji: "🚀",
+    benefits: [
+      "Up to ₹20 lakh for PoC",
+      "Up to ₹50 lakh for scale-up",
+      "Mentorship support",
+    ],
+    applicationUrl: "https://seedfund.startupindia.gov.in",
+    eligibility: {
+      occupation: ["Self-Employed", "Employee"],
+      minAge: 18,
+      maxAge: 45,
+      maxIncome: 1000000,
+      gender: ["Male", "Female", "Other"],
+      category: ["General", "OBC", "SC", "ST"],
+      states: ["All"],
+    },
+  },
+  {
+    id: "10",
+    name: "Sukanya Samriddhi Yojana",
+    shortDescription:
+      "Small savings scheme for a girl child, offering high interest rate and tax benefits.",
+    description:
+      "Sukanya Samriddhi Yojana is a government savings scheme for girl children under the 'Beti Bachao Beti Padhao' initiative. It offers an attractive interest rate and income tax benefits.",
+    ministry: "Ministry of Finance",
+    launchedYear: 2015,
+    category: "Women Welfare",
+    imageEmoji: "💰",
+    benefits: [
+      "High interest rate (~8.2%)",
+      "Tax deduction under 80C",
+      "Matures at age 21",
+    ],
+    applicationUrl: "https://www.indiapost.gov.in",
+    eligibility: {
+      occupation: ["Student", "Unemployed"],
+      minAge: 0,
+      maxAge: 10,
+      maxIncome: 500000,
+      gender: ["Female"],
+      category: ["General", "OBC", "SC", "ST"],
+      states: ["All"],
+    },
+  },
+  {
+    id: "11",
+    name: "PM Kaushal Vikas Yojana (PMKVY)",
+    shortDescription:
+      "Free skill training for youth under the National Skill Development Mission.",
+    description:
+      "PMKVY enables a large number of Indian youth to take up industry-relevant skill training that will help them secure a better livelihood. Individuals with prior learning experience or skills are also assessed and certified under Recognition of Prior Learning (RPL).",
+    ministry: "Ministry of Skill Development and Entrepreneurship",
+    launchedYear: 2015,
+    category: "Skill Development",
+    imageEmoji: "⚙️",
+    benefits: [
+      "Free skill training",
+      "Industry-recognised certification",
+      "Placement assistance",
+    ],
+    applicationUrl: "https://pmkvyofficial.org",
+    eligibility: {
+      occupation: ["Student", "Unemployed", "Farmer", "Other"],
+      minAge: 15,
+      maxAge: 45,
+      maxIncome: 300000,
+      gender: ["Male", "Female", "Other"],
+      category: ["General", "OBC", "SC", "ST"],
+      states: ["All"],
+    },
+  },
+  {
+    id: "12",
+    name: "National Old Age Pension Scheme",
+    shortDescription:
+      "Monthly pension to BPL elderly citizens aged 60 years and above.",
+    description:
+      "NOAPS provides central assistance at the rate of ₹200 per month for persons aged 60–79 years and ₹500 per month for persons aged 80 years and above who are below the poverty line.",
+    ministry: "Ministry of Rural Development",
+    launchedYear: 1995,
+    category: "Social Security",
+    imageEmoji: "👴",
+    benefits: [
+      "₹200–₹500/month pension",
+      "Direct bank transfer",
+      "State top-up available",
+    ],
+    applicationUrl: "https://nsap.nic.in",
+    eligibility: {
+      occupation: ["Unemployed", "Farmer", "Other"],
+      minAge: 60,
+      maxAge: 99,
+      maxIncome: 100000,
+      gender: ["Male", "Female", "Other"],
+      category: ["General", "OBC", "SC", "ST"],
+      states: ["All"],
+    },
+  },
+  {
+    id: "13",
+    name: "Atal Pension Yojana",
+    shortDescription:
+      "Guaranteed monthly pension of ₹1,000–₹5,000 for unorganised sector workers.",
+    description:
+      "Atal Pension Yojana (APY) is focussed on all citizens, especially unorganised sector workers. Under APY, a guaranteed minimum pension of ₹1,000, ₹2,000, ₹3,000, ₹4,000 or ₹5,000 per month is provided at the age of 60 years.",
+    ministry: "Ministry of Finance",
+    launchedYear: 2015,
+    category: "Social Security",
+    imageEmoji: "🛡️",
+    benefits: [
+      "Guaranteed pension ₹1K–₹5K/month",
+      "Government co-contribution",
+      "Death & disability cover",
+    ],
+    applicationUrl: "https://jansuraksha.gov.in",
+    eligibility: {
+      occupation: ["Farmer", "Self-Employed", "Unemployed", "Other"],
+      minAge: 18,
+      maxAge: 40,
+      maxIncome: 300000,
+      gender: ["Male", "Female", "Other"],
+      category: ["General", "OBC", "SC", "ST"],
+      states: ["All"],
+    },
+  },
+  {
+    id: "14",
+    name: "Dr. Ambedkar Post Matric Scholarship (OBC)",
+    shortDescription:
+      "Financial assistance to OBC students for post-matriculation studies.",
+    description:
+      "This scheme provides financial assistance to students belonging to Other Backward Classes to enable them to pursue post-matriculation courses. The scheme covers maintenance allowance, reimbursement of fees and other allowances.",
+    ministry: "Ministry of Social Justice and Empowerment",
+    launchedYear: 1998,
+    category: "Education",
+    imageEmoji: "📖",
+    benefits: [
+      "Maintenance allowance",
+      "Compulsory fee reimbursement",
+      "Study tour & thesis allowance",
+    ],
+    applicationUrl: "https://scholarships.gov.in",
+    eligibility: {
+      occupation: ["Student"],
+      minAge: 14,
+      maxAge: 35,
+      maxIncome: 100000,
+      gender: ["Male", "Female", "Other"],
+      category: ["OBC"],
+      states: ["All"],
+    },
+  },
+  {
+    id: "15",
+    name: "PM Jan Dhan Yojana",
+    shortDescription:
+      "Zero-balance bank accounts with RuPay debit card and ₹2 lakh accident insurance.",
+    description:
+      "Pradhan Mantri Jan Dhan Yojana ensures access to financial services, namely banking, savings, remittance, credit, insurance, and pension for the excluded sections. Account holders also get a RuPay debit card with ₹2 lakh accident insurance cover.",
+    ministry: "Ministry of Finance",
+    launchedYear: 2014,
+    category: "Financial Inclusion",
+    imageEmoji: "🏦",
+    benefits: [
+      "Zero balance account",
+      "RuPay debit card",
+      "₹2 lakh accident insurance",
+      "₹10,000 overdraft facility",
+    ],
+    applicationUrl: "https://pmjdy.gov.in",
+    eligibility: {
+      occupation: ["Farmer", "Employee", "Self-Employed", "Unemployed", "Student", "Other"],
+      minAge: 10,
+      maxAge: 99,
+      maxIncome: 200000,
+      gender: ["Male", "Female", "Other"],
+      category: ["General", "OBC", "SC", "ST"],
+      states: ["All"],
+    },
+  },
+];
+
+module.exports = schemes;
