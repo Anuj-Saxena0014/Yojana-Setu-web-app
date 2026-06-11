@@ -18,6 +18,7 @@ const generateToken = (id) => {
 
 // ── SIGNUP ─────────────────────────────────────────────────────────────────
 router.post("/signup", async (req, res) => {
+  
   try {
     const { name, email, password, passwordConfirm } = req.body;
 
