@@ -32,6 +32,8 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: null,
     },
+    resetPasswordToken: String,
+    resetPasswordExpire: Date,
   },
   { timestamps: true }
 );
@@ -39,7 +41,7 @@ const userSchema = new mongoose.Schema(
 // ── Hash password before saving ──────────────────────────────────────────────
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
-    next();
+    return next();
   }
 
   const salt = await bcryptjs.genSalt(10);

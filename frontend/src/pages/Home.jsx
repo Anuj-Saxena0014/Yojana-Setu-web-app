@@ -2,8 +2,8 @@
 // src/pages/Home.jsx  –  Landing page
 // ─────────────────────────────────────────────────────────────────────────────
 
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import SchemeCard from "../components/SchemeCard";
 import { SkeletonCard } from "../components/Spinner";
 import { useAllSchemes } from "../hooks/useSchemes";
@@ -45,6 +45,10 @@ const CATEGORIES = [
 
 export default function Home() {
   const { schemes, loading, fetch } = useAllSchemes();
+  const location = useLocation();
+  const [showWelcomeBanner, setShowWelcomeBanner] = useState(!!location.state?.welcome);
+  const [showLoginBanner, setShowLoginBanner] = useState(!!location.state?.loggedIn);
+  const welcomeName = location.state?.name || "";
 
   useEffect(() => {
     fetch();
@@ -54,6 +58,51 @@ export default function Home() {
 
   return (
     <div>
+      {/* 🌟 Welcome Banner (First-time Login / Registration) */}
+      {showWelcomeBanner && (
+        <div className="bg-emerald-50 border-b-2 border-emerald-400 py-4 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <div className="flex-1 flex items-center gap-3">
+              <span className="flex items-center justify-center p-2 rounded-lg bg-emerald-500 text-white text-lg leading-none">🎉</span>
+              <p className="font-medium text-emerald-800 font-body text-base">
+                <span className="font-bold">Welcome to Yojana Setu, {welcomeName}!</span> We've sent a welcome email to your registered inbox. Please check your spam/promotions folder if it doesn't appear.
+              </p>
+            </div>
+            <button
+              onClick={() => setShowWelcomeBanner(false)}
+              className="p-1 rounded-md hover:bg-emerald-100 text-emerald-500 focus:outline-none transition-colors"
+              aria-label="Close welcome notification"
+            >
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* 🔒 Standard Login Success Banner */}
+      {showLoginBanner && (
+        <div className="bg-blue-50 border-b-2 border-blue-400 py-3.5 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <div className="flex-1 flex items-center gap-3">
+              <span className="flex items-center justify-center p-2 rounded-lg bg-blue-500 text-white text-base leading-none">🔓</span>
+              <p className="font-medium text-blue-800 font-body text-base">
+                Signed in successfully! Welcome back to Yojana Setu.
+              </p>
+            </div>
+            <button
+              onClick={() => setShowLoginBanner(false)}
+              className="p-1 rounded-md hover:bg-blue-100 text-blue-500 focus:outline-none transition-colors"
+              aria-label="Close login notification"
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
       {/* ══════════════════════════════════════════════════════════════════════
           STATISTICS SECTION
       ══════════════════════════════════════════════════════════════════════ */}

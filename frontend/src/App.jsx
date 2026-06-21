@@ -17,11 +17,16 @@ import Favourites  from "./pages/Favourites";
 import About       from "./pages/About";
 import Login       from "./pages/Login";
 import Signup      from "./pages/Signup";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import NotFound    from "./pages/NotFound";
+import schemes from "./data/schemes";
+
 
 function AppContent() {
   const location = useLocation();
   const isHome = location.pathname === "/";
+  
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -35,6 +40,8 @@ function AppContent() {
           <Route path="/"             element={<Home />} />
           <Route path="/login"        element={<Login />} />
           <Route path="/signup"       element={<Signup />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/find-schemes" element={<FindSchemes />} />
           <Route path="/schemes/:id"  element={<SchemeDetails />} />
           <Route path="/favourites"   element={<Favourites />} />

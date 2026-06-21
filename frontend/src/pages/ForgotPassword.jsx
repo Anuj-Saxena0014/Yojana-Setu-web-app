@@ -1,36 +1,35 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
+import api from "../services/api";
 
-export default function Login() {
-  const navigate = useNavigate();
-  const { login } = useAuth();
+export default function ForgotPassword() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setMessage("");
 
-    if (!email || !password) {
-      setError("Please fill in all fields");
+    if (!email) {
+      setError("Please enter your email address");
       return;
     }
 
     setIsLoading(true);
 
     try {
-      const result = await login(email, password);
-      if (result.success) {
-        navigate("/", { state: { loggedIn: true } });
+      const { data } = await api.post("/auth/forgot-password", { email });
+      if (data.success) {
+        setMessage(data.message || "Password reset link sent to your email.");
+        setEmail("");
       } else {
-        setError(result.error || "Login failed. Please try again.");
+        setError(data.message || "Failed to request password reset.");
       }
     } catch (err) {
-      setError("An error occurred. Please try again later.");
-      console.error("Login error:", err);
+      setError(err.message || "An error occurred. Please check your network connection.");
     } finally {
       setIsLoading(false);
     }
@@ -55,16 +54,17 @@ export default function Login() {
             Find Government Schemes For You
           </p>
           <p className="text-base text-slate-600 mt-2 font-body">
-            Sign in to your account
+            Reset your password securely
           </p>
         </div>
 
-        {/* Login Card */}
+        {/* Forgot Password Card */}
         <div className="bg-white border-2 border-slate-200 rounded-2xl shadow-md p-8 sm:p-10">
-          {/* Error Message with better accessibility */}
+          
+          {/* Error Message */}
           {error && (
             <div 
-              className="alert alert-error mb-8" 
+              className="alert alert-error mb-6" 
               role="alert"
               aria-live="polite"
             >
@@ -72,8 +72,23 @@ export default function Login() {
             </div>
           )}
 
-          {/* Login Form */}
-          <form onSubmit={handleSubmit} className="space-y-7">
+          {/* Success Message */}
+          {message && (
+            <div 
+              className="alert alert-success mb-6" 
+              role="alert"
+              aria-live="polite"
+            >
+              <strong>✅ Success:</strong> {message}
+            </div>
+          )}
+
+          <p className="text-slate-600 font-body text-base mb-6 leading-relaxed">
+            Enter the email address associated with your account and we will send you a secure link to reset your password.
+          </p>
+
+          {/* Forgot Password Form */}
+          <form onSubmit={handleSubmit} className="space-y-7" noValidate>
             {/* Email Field */}
             <div>
               <label htmlFor="email" className="form-label">
@@ -88,43 +103,8 @@ export default function Login() {
                 className="form-input"
                 required
                 aria-required="true"
+                disabled={isLoading}
               />
-            </div>
-
-            {/* Password Field */}
-            <div>
-              <label htmlFor="password" className="form-label">
-                Password <span className="text-red-600">*</span>
-              </label>
-              <input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter your password"
-                className="form-input"
-                required
-                aria-required="true"
-              />
-            </div>
-
-            {/* Remember Me & Forgot Password */}
-            <div className="flex items-center justify-between">
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  className="w-5 h-5 text-navy-600 rounded border-slate-300"
-                />
-                <span className="text-base text-slate-700 font-body">
-                  Remember me
-                </span>
-              </label>
-              <Link 
-                to="/forgot-password" 
-                className="text-base text-navy-600 hover:underline font-semibold font-body"
-              >
-                Forgot password?
-              </Link>
             </div>
 
             {/* Submit Button */}
@@ -133,7 +113,7 @@ export default function Login() {
               disabled={isLoading}
               className="btn-saffron w-full text-lg font-semibold"
             >
-              {isLoading ? "Signing in..." : "Sign In"}
+              {isLoading ? "Sending Link..." : "Send Reset Link"}
             </button>
           </form>
 
@@ -144,11 +124,11 @@ export default function Login() {
             <div className="flex-1 border-t-2 border-slate-200"></div>
           </div>
 
-          {/* Sign Up Link */}
+          {/* Back to Login Link */}
           <p className="text-center text-slate-700 font-body text-base">
-            Don't have an account?{" "}
-            <Link to="/signup" className="text-navy-600 hover:underline font-semibold">
-              Create one now
+            Remembered your password?{" "}
+            <Link to="/login" className="text-navy-600 hover:underline font-semibold">
+              Sign In
             </Link>
           </p>
         </div>
@@ -156,14 +136,9 @@ export default function Login() {
         {/* Security Info */}
         <div className="mt-8 p-4 bg-blue-50 rounded-xl border border-blue-200">
           <p className="text-sm text-blue-900 font-body">
-            <strong>🔒 Secure Login:</strong> Your data is encrypted with SSL security. Only government officials can access your information.
+            <strong>🔒 Verification Notice:</strong> The password reset link will expire in 15 minutes. Check your spam folder if you do not receive the email.
           </p>
         </div>
-
-        {/* Footer Info */}
-        <p className="text-center text-slate-500 text-sm mt-8 font-body">
-          By signing in, you agree to our Terms of Service and Privacy Policy
-        </p>
       </div>
     </div>
   );

@@ -24,7 +24,7 @@ export default function FindSchemes() {
     loading:    filterLoading,
     error:      filterError,
     filter:     runFilter,
-    hasSearched,
+    hasSearched,  
   } = useFilterSchemes();
 
   const [mode, setMode] = useState("browse"); // "browse" | "filtered"
@@ -72,7 +72,8 @@ export default function FindSchemes() {
     mode === "browse" && activeCategory !== "All"
       ? displaySchemes.filter((s) => s.category === activeCategory)
       : displaySchemes;
-
+console.log("allSchemes:", allSchemes.length);
+console.log("visibleSchemes:", visibleSchemes.length);
   return (
     <div className="min-h-screen bg-slate-50">
       {/* ══════════════════════════════════════════════════════════════════════

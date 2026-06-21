@@ -36,7 +36,7 @@ export default function Signup() {
     try {
       const result = await signup(name, email, password, passwordConfirm);
       if (result.success) {
-        navigate("/");
+        navigate("/", { state: { welcome: true, name } });
       } else {
         setError(result.error || "Signup failed. Please try again.");
       }
@@ -85,7 +85,7 @@ export default function Signup() {
           )}
 
           {/* Signup Form */}
-          <form onSubmit={handleSubmit} className="space-y-7">
+         <form onSubmit={handleSubmit} className="space-y-7" noValidate>
             {/* Name Field */}
             <div>
               <label htmlFor="name" className="form-label">

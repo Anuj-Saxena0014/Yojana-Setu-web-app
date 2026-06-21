@@ -25,6 +25,34 @@ const EMPTY = {
   category: "",
 };
 
+const Field = ({ label, id, icon, error, filled, children }) => (
+    <div className="group">
+      <label
+        htmlFor={id}
+        className="flex items-center gap-2 text-sm font-semibold text-slate-700 font-body mb-2"
+      >
+        <span className={`flex items-center justify-center w-8 h-8 rounded-lg transition-colors duration-200 ${
+          error
+            ? "bg-red-100 text-red-500"
+            : filled
+            ? "bg-green-100 text-green-600"
+            : "bg-slate-100 text-slate-400 group-hover:bg-saffron-50 group-hover:text-saffron-600"
+        }`}>
+          {icon}
+        </span>
+        {label}
+      </label>
+      {children}
+      {error && (
+        <p className="mt-1.5 text-xs text-red-500 font-body flex items-center gap-1">
+          <svg className="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+          </svg>
+          {error}
+        </p>
+      )}
+    </div>
+  );
 // Icon components for each field
 const icons = {
   age: (
@@ -101,34 +129,7 @@ export default function FilterForm({ onSubmit, loading, layout = "sidebar" }) {
   const totalFields = Object.keys(EMPTY).length;
 
   // ── Styled field wrapper ──
-  const Field = ({ label, id, icon, error, children }) => (
-    <div className="group">
-      <label
-        htmlFor={id}
-        className="flex items-center gap-2 text-sm font-semibold text-slate-700 font-body mb-2"
-      >
-        <span className={`flex items-center justify-center w-8 h-8 rounded-lg transition-colors duration-200 ${
-          error
-            ? "bg-red-100 text-red-500"
-            : form[id]
-            ? "bg-green-100 text-green-600"
-            : "bg-slate-100 text-slate-400 group-hover:bg-saffron-50 group-hover:text-saffron-600"
-        }`}>
-          {icon}
-        </span>
-        {label}
-      </label>
-      {children}
-      {error && (
-        <p className="mt-1.5 text-xs text-red-500 font-body flex items-center gap-1">
-          <svg className="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-          </svg>
-          {error}
-        </p>
-      )}
-    </div>
-  );
+  
 
   // Input class builder
   const inputClass = (field) =>
@@ -190,20 +191,34 @@ export default function FilterForm({ onSubmit, loading, layout = "sidebar" }) {
         {/* ── All 6 fields in a responsive 3-column grid ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-5">
           {/* Age */}
-          <Field label="Age *" id="age" icon={icons.age} error={errors.age}>
+          <Field
+  label="Age *"
+  id="age"
+  icon={icons.age}
+  error={errors.age}
+  filled={!!form.age}
+>
             <input
-              id="age"
-              type="number"
-              min={0} max={120}
-              value={form.age}
-              onChange={set("age")}
-              placeholder="e.g. 24"
-              className={inputClass("age")}
-            />
+            id="age"
+           type="number"
+          min={0}
+          max={120}
+          value={form.age}
+          onChange={(e) => setForm({ ...form, age: e.target.value })}
+          placeholder="e.g. 24"
+          className={inputClass("age")}
+          />
           </Field>
 
+
           {/* Gender */}
-          <Field label="Gender *" id="gender" icon={icons.gender} error={errors.gender}>
+          <Field
+  label="Gender *"
+  id="gender"
+  icon={icons.gender}
+  error={errors.gender}
+  filled={!!form.gender}
+>
             <select
               id="gender"
               value={form.gender}
@@ -216,7 +231,13 @@ export default function FilterForm({ onSubmit, loading, layout = "sidebar" }) {
           </Field>
 
           {/* Annual Income */}
-          <Field label="Annual Income (₹) *" id="annualIncome" icon={icons.income} error={errors.annualIncome}>
+          <Field
+  label="Annual Income (₹) *"
+  id="annualIncome"
+  icon={icons.income}
+  error={errors.annualIncome}
+  filled={!!form.annualIncome}
+>
             <input
               id="annualIncome"
               type="number"
@@ -229,7 +250,13 @@ export default function FilterForm({ onSubmit, loading, layout = "sidebar" }) {
           </Field>
 
           {/* State */}
-          <Field label="State" id="state" icon={icons.state} error={errors.state}>
+          <Field
+  label="State"
+  id="state"
+  icon={icons.state}
+  error={errors.state}
+  filled={!!form.state}
+>
             <select
               id="state"
               value={form.state}
@@ -242,7 +269,13 @@ export default function FilterForm({ onSubmit, loading, layout = "sidebar" }) {
           </Field>
 
           {/* Occupation */}
-          <Field label="Occupation *" id="occupation" icon={icons.occupation} error={errors.occupation}>
+          <Field
+  label="Occupation *"
+  id="occupation"
+  icon={icons.occupation}
+  error={errors.occupation}
+  filled={!!form.occupation}
+>
             <select
               id="occupation"
               value={form.occupation}
@@ -255,7 +288,13 @@ export default function FilterForm({ onSubmit, loading, layout = "sidebar" }) {
           </Field>
 
           {/* Category */}
-          <Field label="Category *" id="category" icon={icons.category} error={errors.category}>
+         <Field
+  label="Category *"
+  id="category"
+  icon={icons.category}
+  error={errors.category}
+  filled={!!form.category}
+>
             <select
               id="category"
               value={form.category}
