@@ -1,7 +1,4 @@
-import {
-  getAllSchemes,
-  getSchemeById
-} from "../services/schemeService";
+import schemes from "../data/schemes";
 
 export const getAllSchemes = () => schemes;
 

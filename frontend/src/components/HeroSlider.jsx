@@ -172,7 +172,7 @@ export default function HeroSlider() {
       ))}
 
       {/* ── Dark gradient at bottom for smooth transition ── */}
-      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent z-20 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-saffron-500 z-20 pointer-events-none" />
 
       {/* ── Arrow buttons ── */}
       <button

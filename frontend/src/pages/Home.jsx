@@ -106,28 +106,82 @@ export default function Home() {
       {/* ══════════════════════════════════════════════════════════════════════
           STATISTICS SECTION
       ══════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-white py-12 border-b-4 border-saffron-600">
+      <section className="bg-white py-10 border-t border-saffron-500 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="text-center p-6 border-t-4 border-saffron-600">
-              <div className="text-4xl md:text-5xl font-bold text-blue-900 mb-2">2,340+</div>
-              <div className="text-slate-600 font-body tracking-widest uppercase text-sm">Total Schemes</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-8 lg:gap-y-0">
+            
+            {/* Card 1: Total Schemes */}
+            <div className="flex items-center gap-4 py-2 justify-center lg:border-r lg:border-saffron-200/50">
+              <div className="w-14 h-14 rounded-2xl bg-saffron-50 border border-saffron-100/60 flex items-center justify-center shadow-sm flex-shrink-0">
+                <svg className="w-6 h-6 text-saffron-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="10" cy="7" r="3" />
+                  <path d="M20 21v-2a4 4 0 0 0-3-3.87" />
+                  <circle cx="17" cy="8" r="2.5" />
+                  <path d="M3 18c4 3 10 3 14 0" />
+                </svg>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 leading-none">2,340+</span>
+                <div className="w-8 h-0.5 bg-saffron-500 my-1.5"></div>
+                <span className="text-[10px] font-bold text-slate-500 tracking-wider uppercase font-body">Total Schemes</span>
+              </div>
             </div>
-            <div className="text-center p-6 border-t-4 border-saffron-600">
-              <div className="text-4xl md:text-5xl font-bold text-blue-900 mb-2">28</div>
-              <div className="text-slate-600 font-body tracking-widest uppercase text-sm">States Covered</div>
+
+            {/* Card 2: States Covered */}
+            <div className="flex items-center gap-4 py-2 justify-center lg:border-r lg:border-saffron-200/50">
+              <div className="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-100/60 flex items-center justify-center shadow-sm flex-shrink-0">
+                <svg className="w-6 h-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <circle cx="12" cy="11" r="3" stroke="currentColor" strokeWidth="2" fill="none" />
+                </svg>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 leading-none">28</span>
+                <div className="w-8 h-0.5 bg-emerald-500 my-1.5"></div>
+                <span className="text-[10px] font-bold text-slate-500 tracking-wider uppercase font-body">States Covered</span>
+              </div>
             </div>
-            <div className="text-center p-6 border-t-4 border-saffron-600">
-              <div className="text-4xl md:text-5xl font-bold text-blue-900 mb-2">48L+</div>
-              <div className="text-slate-600 font-body tracking-widest uppercase text-sm">Citizens Benefited</div>
+
+            {/* Card 3: Citizens Benefited */}
+            <div className="flex items-center gap-4 py-2 justify-center lg:border-r lg:border-saffron-200/50">
+              <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100/60 flex items-center justify-center shadow-sm flex-shrink-0">
+                <svg className="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 leading-none">48L+</span>
+                <div className="w-8 h-0.5 bg-blue-500 my-1.5"></div>
+                <span className="text-[10px] font-bold text-slate-500 tracking-wider uppercase font-body">Citizens Benefited</span>
+              </div>
             </div>
-            <div className="text-center p-6 border-t-4 border-saffron-600">
-              <div className="text-4xl md:text-5xl font-bold text-blue-900 mb-2">98%</div>
-              <div className="text-slate-600 font-body tracking-widest uppercase text-sm">Match Accuracy</div>
+
+            {/* Card 4: Match Accuracy */}
+            <div className="flex items-center gap-4 py-2 justify-center">
+              <div className="w-14 h-14 rounded-2xl bg-purple-50 border border-purple-100/60 flex items-center justify-center shadow-sm flex-shrink-0">
+                <svg className="w-6 h-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
+                  <circle cx="12" cy="12" r="5" stroke="currentColor" strokeWidth="2" />
+                  <circle cx="12" cy="12" r="1" stroke="currentColor" strokeWidth="2" fill="currentColor" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16 8l4-4m0 0h-4m4 0v4" />
+                </svg>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 leading-none">98%</span>
+                <div className="w-8 h-0.5 bg-purple-500 my-1.5"></div>
+                <span className="text-[10px] font-bold text-slate-500 tracking-wider uppercase font-body">Match Accuracy</span>
+              </div>
             </div>
+
           </div>
-          <div className="text-center text-sm text-slate-500 mt-6 font-body">
-            * Last updated: 16 April 2026 | Data from MyScheme.gov.in
+
+          {/* Last Updated Footer */}
+          <div className="flex items-center justify-center gap-2 mt-8 text-xs font-body text-slate-400">
+            <span className="w-8 h-px bg-slate-200"></span>
+            <span className="text-emerald-600">🛡️</span>
+            <span>* Last updated: 16 April 2026 | Data from MyScheme.gov.in</span>
+            <span className="w-8 h-px bg-slate-200"></span>
           </div>
         </div>
       </section>

@@ -8,6 +8,9 @@ const cors = require("cors");
 const connectDB = require("./middleware/db");
 const schemesRouter = require("./routes/schemes");
 const authRouter = require("./routes/auth");
+const Scheme = require("./models/Scheme");
+const seedDatabase = require("./data/seed");
+const { startExpiryService } = require("./services/schemeExpiryService");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -16,8 +19,22 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(express.json());
 
-// ── Connect to MongoDB (used for auth only; schemes come from Gemini AI) ─────
-connectDB();
+// ── Connect to MongoDB and Initialize Services ───────────────────────────────
+connectDB().then(async () => {
+  try {
+    const count = await Scheme.countDocuments({});
+    if (count === 0) {
+      console.log("⚠️ Schemes collection empty. Running seeding service...");
+      await seedDatabase();
+    } else {
+      console.log(`ℹ️ Schemes collection contains ${count} records.`);
+    }
+    // Start node-cron expiry cleanup service
+    startExpiryService();
+  } catch (err) {
+    console.error("❌ Failed to initialize scheme services:", err.message);
+  }
+});
 
 // ── Routes ───────────────────────────────────────────────────────────────────
 app.use("/api/schemes", schemesRouter);

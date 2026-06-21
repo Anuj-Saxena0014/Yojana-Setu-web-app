@@ -29,6 +29,10 @@ const SchemeSchema = new mongoose.Schema(
     benefits: { type: [String], default: [] },
     applicationUrl: { type: String, default: "" },
     eligibility: { type: EligibilitySchema, required: true },
+    deadline: { type: Date, default: null },
+    launchDate: { type: Date, default: null },
+    isActive: { type: Boolean, default: true },
+    lastVerified: { type: Date, default: Date.now },
   },
   { timestamps: true }
 );

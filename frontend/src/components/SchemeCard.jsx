@@ -66,10 +66,50 @@ export default function SchemeCard({ scheme, delay = 0 }) {
       </div>
 
       {/* ── Description ── */}
-      <div className="px-6 pb-5 flex-1">
+      <div className="px-6 pb-4 flex-shrink-0">
         <p className="text-base text-slate-600 font-body leading-relaxed line-clamp-3">
           {scheme.shortDescription}
         </p>
+      </div>
+
+      {/* ── Lifecycle & Verification Info ── */}
+      <div className="px-6 pb-4 pt-3 border-t border-slate-100 flex flex-col gap-2 bg-slate-50/40">
+        {scheme.needsReview && (
+          <div className="text-[11px] font-semibold text-rose-700 bg-rose-50 border border-rose-100 px-2 py-0.5 rounded-md flex items-center gap-1 animate-pulse">
+            <span>⚠️</span> Needs Review (Unverified for {scheme.daysSinceVerification} days)
+          </div>
+        )}
+        
+        <div className="grid grid-cols-2 gap-x-2 gap-y-1 text-xs font-body text-slate-500">
+          <div>
+            <span className="font-semibold text-slate-600">Verified:</span>{" "}
+            {scheme.lastVerified ? new Date(scheme.lastVerified).toLocaleDateString('en-IN', {day: 'numeric', month: 'short', year: 'numeric'}) : "Recently"}
+          </div>
+          <div>
+            <span className="font-semibold text-slate-600">Status:</span>{" "}
+            <span className={`font-bold ${scheme.isActive !== false ? "text-emerald-600" : "text-rose-600"}`}>
+              {scheme.isActive !== false ? "Active" : "Expired"}
+            </span>
+          </div>
+          {scheme.deadline ? (
+            <>
+              <div>
+                <span className="font-semibold text-slate-600">Deadline:</span>{" "}
+                {new Date(scheme.deadline).toLocaleDateString('en-IN', {day: 'numeric', month: 'short', year: 'numeric'})}
+              </div>
+              <div>
+                <span className="font-semibold text-slate-600">Remaining:</span>{" "}
+                <span className={`font-bold ${scheme.daysRemaining > 30 ? "text-blue-600" : "text-amber-600"}`}>
+                  {scheme.daysRemaining} days
+                </span>
+              </div>
+            </>
+          ) : (
+            <div className="col-span-2">
+              <span className="font-semibold text-slate-600">Deadline:</span> Ongoing
+            </div>
+          )}
+        </div>
       </div>
 
       {/* ── Benefits ── */}

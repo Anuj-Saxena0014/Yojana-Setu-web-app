@@ -76,11 +76,20 @@ export default function SchemeDetails() {
         <span className="text-slate-600 line-clamp-1">{scheme.name}</span>
       </nav>
 
-      {/* AI disclaimer */}
-      <div className="mb-4 px-4 py-2.5 bg-blue-50 border border-blue-200 rounded-xl flex items-center gap-2 text-xs text-blue-700 font-body">
-        <span>🤖</span>
-        <span>This information is AI-generated using Google Gemini. Always verify details on the official government portal before applying.</span>
-      </div>
+      {/* Verification Warning Alert */}
+      {scheme.needsReview ? (
+        <div className="mb-4 px-4 py-3.5 bg-rose-50 border border-rose-200 rounded-xl flex items-start gap-2.5 text-sm text-rose-800 font-body animate-pulse">
+          <span className="text-lg leading-none mt-0.5">⚠️</span>
+          <div>
+            <span className="font-bold">Needs Review:</span> This scheme details have not been verified in over 180 days ({scheme.daysSinceVerification} days ago) and details might have changed. Please verify with the official government portal.
+          </div>
+        </div>
+      ) : (
+        <div className="mb-4 px-4 py-2.5 bg-blue-50 border border-blue-200 rounded-xl flex items-center gap-2 text-xs text-blue-700 font-body">
+          <span>🤖</span>
+          <span>Matching and relevance ranked using Google Gemini AI. Always cross-verify on official government portals.</span>
+        </div>
+      )}
 
       {/* ── Hero card ── */}
       <div className="card p-8 mb-6 animate-fade-up">
@@ -213,22 +222,58 @@ export default function SchemeDetails() {
 
         {/* ── Sidebar: Eligibility ── */}
         <aside className="lg:col-span-1">
-          <div className="card p-6 sticky top-20">
-            <h2 className="font-display font-bold text-navy-800 text-lg mb-4">Eligibility</h2>
-
-            <div>
-              <DetailRow label="Age Range"    value={`${eligKey.minAge ?? 0} – ${eligKey.maxAge ?? 99} years`} />
-              <DetailRow label="Max Income"   value={eligKey.maxIncome ? `₹${eligKey.maxIncome.toLocaleString("en-IN")} / year` : "No limit"} />
-              <DetailRow label="Gender"       value={eligKey.gender?.join(", ") || "All"} />
-              <DetailRow label="Occupation"   value={eligKey.occupation?.join(", ") || "All"} />
-              <DetailRow label="Category"     value={eligKey.category?.join(", ") || "All"} />
-              <DetailRow label="States"       value={eligKey.states?.includes("All") ? "All India" : eligKey.states?.join(", ") || "All India"} />
+          <div className="sticky top-20 space-y-6">
+            {/* Status & Lifecycle Card */}
+            <div className="card p-6">
+              <h2 className="font-display font-bold text-navy-800 text-lg mb-4">Scheme Status</h2>
+              <div className="space-y-3 font-body">
+                <div className="flex justify-between items-center py-2 border-b border-slate-100">
+                  <span className="text-sm font-semibold text-slate-500">Status</span>
+                  <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${scheme.isActive !== false ? "bg-emerald-100 text-emerald-800" : "bg-rose-100 text-rose-800"}`}>
+                    {scheme.isActive !== false ? "Active" : "Expired"}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-slate-100">
+                  <span className="text-sm font-semibold text-slate-500">Last Verified</span>
+                  <span className="text-sm font-medium text-slate-800">
+                    {scheme.lastVerified ? new Date(scheme.lastVerified).toLocaleDateString('en-IN', {day: 'numeric', month: 'short', year: 'numeric'}) : "Recently"}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-slate-100">
+                  <span className="text-sm font-semibold text-slate-500">Deadline</span>
+                  <span className="text-sm font-medium text-slate-800">
+                    {scheme.deadline ? new Date(scheme.deadline).toLocaleDateString('en-IN', {day: 'numeric', month: 'short', year: 'numeric'}) : "Ongoing"}
+                  </span>
+                </div>
+                {scheme.deadline && (
+                  <div className="flex justify-between items-center py-2">
+                    <span className="text-sm font-semibold text-slate-500">Days Remaining</span>
+                    <span className={`text-sm font-bold ${scheme.daysRemaining > 30 ? "text-blue-600" : "text-amber-600"}`}>
+                      {scheme.daysRemaining} days
+                    </span>
+                  </div>
+                )}
+              </div>
             </div>
 
-            <div className="mt-5 pt-5 border-t border-slate-100">
-              <p className="text-xs text-slate-400 font-body">
-                ⚠️ Eligibility criteria may change. Always verify on the official portal.
-              </p>
+            {/* Eligibility Card */}
+            <div className="card p-6">
+              <h2 className="font-display font-bold text-navy-800 text-lg mb-4">Eligibility</h2>
+
+              <div>
+                <DetailRow label="Age Range"    value={`${eligKey.minAge ?? 0} – ${eligKey.maxAge ?? 99} years`} />
+                <DetailRow label="Max Income"   value={eligKey.maxIncome ? `₹${eligKey.maxIncome.toLocaleString("en-IN")} / year` : "No limit"} />
+                <DetailRow label="Gender"       value={eligKey.gender?.join(", ") || "All"} />
+                <DetailRow label="Occupation"   value={eligKey.occupation?.join(", ") || "All"} />
+                <DetailRow label="Category"     value={eligKey.category?.join(", ") || "All"} />
+                <DetailRow label="States"       value={eligKey.states?.includes("All") ? "All India" : eligKey.states?.join(", ") || "All India"} />
+              </div>
+
+              <div className="mt-5 pt-5 border-t border-slate-100">
+                <p className="text-xs text-slate-400 font-body">
+                  ⚠️ Eligibility criteria may change. Always verify on the official portal.
+                </p>
+              </div>
             </div>
           </div>
         </aside>
