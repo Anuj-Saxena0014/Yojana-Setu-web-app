@@ -1,221 +1,279 @@
-# 🇮🇳 Yojana Setu — Government Scheme Finder
+# 🇮🇳 Yojana Setu — AI Powered Government Scheme Finder
 
-> **"Find Government Schemes Made For You"**  
-> A modern full-stack web application that matches citizens with relevant Indian government welfare schemes based on their eligibility profile.
-
----
-
-## ✨ Features
-
-| Feature | Description |
-|---|---|
-| 🔍 Smart Filtering | Filter 15+ schemes by age, income, gender, occupation, category & state |
-| 📋 Scheme Cards | Clean cards with emoji icons, benefits, ministry info & links |
-| 🔖 Save Schemes | Bookmark favourites (persisted in `localStorage`) |
-| 🔎 Search Bar | Debounced live search across scheme names & descriptions |
-| 🗂️ Category Filter | Browse by Agriculture, Education, Health, Housing, and more |
-| 📱 Responsive | Mobile-first design works on all screen sizes |
-| ⚡ Fast | Vite + React SPA with skeleton loaders & smooth animations |
-| 🏛️ Ashoka Wheel | Rotating Ashoka Chakra SVG logo & decorative elements |
-| 🛡️ In-memory fallback | Works even without MongoDB — uses local dataset |
+> **"Find Government Schemes Made For You"**
+> An AI-powered full-stack MERN web application that helps Indian citizens discover government welfare schemes based on their eligibility profile in under **2 minutes**.
 
 ---
 
-## 🧱 Tech Stack
+# ✨ Features
 
-**Frontend**
-- React 18 + Vite
-- Tailwind CSS (custom `navy` + `saffron` colour palette)
-- React Router v6
-- Axios
-- Google Fonts: Playfair Display + DM Sans
-
-**Backend**
-- Node.js + Express
-- MongoDB + Mongoose
-- CORS, dotenv
+| Feature                        | Description                                                                       |
+| ------------------------------ | --------------------------------------------------------------------------------- |
+| 🤖 AI Scheme Recommendation    | Uses Google Gemini AI to rank and recommend the most relevant government schemes  |
+| 🔐 JWT Authentication          | Secure user registration and login with JWT authentication                        |
+| ⭐ Favourite Schemes            | Save and manage favourite schemes with MongoDB persistence                        |
+| 🔍 Smart Eligibility Filtering | Filter schemes based on age, gender, income, occupation, caste category and state |
+| 🔎 Live Search                 | Search schemes instantly by name or description                                   |
+| 📋 Detailed Scheme Cards       | Eligibility, benefits, ministry, official links and application details           |
+| 📱 Fully Responsive            | Optimized for Desktop, Tablet and Mobile                                          |
+| ⚡ Fast Performance             | Built using React + Vite for lightning-fast user experience                       |
+| 🎨 Modern UI                   | Clean government-inspired interface with custom colour palette                    |
+| ☁️ Cloud Deployment            | Frontend deployed on Vercel and Backend deployed on Render                        |
 
 ---
 
-## 📁 Folder Structure
+# 🚀 Live Demo
 
-```
-yojana-setu/
-├── backend/
-│   ├── data/
-│   │   └── schemes.js          # 15 seed schemes
-│   ├── middleware/
-│   │   └── db.js               # MongoDB connect + auto-seed
-│   ├── models/
-│   │   └── Scheme.js           # Mongoose schema
-│   ├── routes/
-│   │   └── schemes.js          # GET /schemes, GET /schemes/:id, POST /schemes/filter
-│   ├── server.js               # Express entry point
-│   ├── .env                    # Environment variables
+**Frontend:** *(Add your Vercel URL)*
+
+**Backend API:** *(Add your Render URL)*
+
+---
+
+# 🧱 Tech Stack
+
+## Frontend
+
+* React 18
+* Vite
+* Tailwind CSS
+* React Router DOM
+* Axios
+* React Context API
+* Google Fonts
+
+---
+
+## Backend
+
+* Node.js
+* Express.js
+* MongoDB Atlas
+* Mongoose
+* JWT Authentication
+* bcryptjs
+* dotenv
+* CORS
+
+---
+
+## AI Integration
+
+* Google Gemini API
+
+---
+
+## Deployment
+
+* Vercel
+* Render
+* MongoDB Atlas
+
+---
+
+# ✨ Core Functionalities
+
+* User Registration & Login
+* JWT Authentication
+* AI-based Scheme Recommendation
+* Government Scheme Search
+* Eligibility Filtering
+* Favourite Schemes
+* Responsive Dashboard
+* Protected Backend Routes
+* MongoDB Data Persistence
+* Secure REST APIs
+
+---
+
+# 📂 Project Structure
+
+```text
+yojana-setu
+│
+├── backend
+│   ├── controllers
+│   ├── middleware
+│   ├── models
+│   ├── routes
+│   ├── services
+│   ├── scripts
+│   ├── utils
+│   ├── server.js
 │   └── package.json
 │
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Navbar.jsx      # Sticky nav with mobile menu
-│   │   │   ├── Footer.jsx      # Footer with tricolor strip
-│   │   │   ├── SchemeCard.jsx  # Reusable scheme card
-│   │   │   ├── FilterForm.jsx  # Eligibility input form
-│   │   │   ├── SearchBar.jsx   # Debounced search input
-│   │   │   ├── Spinner.jsx     # Ashoka-wheel spinner + skeleton cards
-│   │   │   └── ErrorMessage.jsx
-│   │   ├── context/
-│   │   │   └── FavouritesContext.jsx  # Global saved-schemes store
-│   │   ├── data/
-│   │   │   └── localSchemes.js        # Frontend fallback data
-│   │   ├── hooks/
-│   │   │   └── useSchemes.js          # Custom hooks for API calls
-│   │   ├── pages/
-│   │   │   ├── Home.jsx        # Landing page with hero + featured schemes
-│   │   │   ├── FindSchemes.jsx # Main filter + browse page
-│   │   │   ├── SchemeDetails.jsx # Full scheme detail view
-│   │   │   ├── Favourites.jsx  # Saved schemes page
-│   │   │   ├── About.jsx       # About page
-│   │   │   └── NotFound.jsx    # 404 page
-│   │   ├── services/
-│   │   │   └── api.js          # Axios instance + API helpers
-│   │   ├── App.jsx             # Router + layout
-│   │   ├── main.jsx            # React entry point
-│   │   └── index.css           # Global styles + Tailwind
-│   ├── index.html
-│   ├── vite.config.js
-│   ├── tailwind.config.js
+├── frontend
+│   ├── src
+│   │   ├── components
+│   │   ├── context
+│   │   ├── hooks
+│   │   ├── pages
+│   │   ├── services
+│   │   ├── assets
+│   │   ├── App.jsx
+│   │   └── main.jsx
 │   └── package.json
 │
-└── package.json                # Root scripts (with concurrently)
+└── README.md
 ```
 
 ---
 
-## 🚀 Setup Instructions
+# 🔌 REST API
 
-### Prerequisites
-- Node.js ≥ 18
-- npm ≥ 9
-- MongoDB (optional — app works without it using in-memory data)
+## Authentication
+
+| Method | Endpoint           |
+| ------ | ------------------ |
+| POST   | /api/auth/register |
+| POST   | /api/auth/login    |
+| GET    | /api/auth/profile  |
 
 ---
 
-### Option A — Run Frontend + Backend Together (Recommended)
+## Government Schemes
+
+| Method | Endpoint            |
+| ------ | ------------------- |
+| GET    | /api/schemes        |
+| GET    | /api/schemes/:id    |
+| POST   | /api/schemes/filter |
+
+---
+
+## Favourite Schemes
+
+| Method | Endpoint                    |
+| ------ | --------------------------- |
+| GET    | /api/auth/favourites        |
+| POST   | /api/auth/favourites/toggle |
+
+---
+
+# ⚙️ Installation
+
+## Clone Repository
 
 ```bash
-# 1. Clone / extract the project
-cd yojana-setu
+git clone https://github.com/Anuj-Saxena0014/Yojana-Setu-web-app.git
 
-# 2. Install root dev tools (concurrently)
-npm install
-
-# 3. Install all dependencies
-npm run install:all
-
-# 4. Start both servers simultaneously
-npm run dev
+cd Yojana-Setu-web-app
 ```
-
-- 🌐 Frontend → http://localhost:5173
-- ⚙️  Backend  → http://localhost:5000
 
 ---
 
-### Option B — Run Separately
+## Install Dependencies
 
-**Backend**
+Backend
+
 ```bash
 cd backend
 npm install
-npm run dev        # nodemon watches for changes
 ```
 
-**Frontend** (new terminal)
+Frontend
+
 ```bash
 cd frontend
 npm install
+```
+
+---
+
+## Environment Variables
+
+Backend `.env`
+
+```env
+PORT=5000
+
+MONGO_URI=your_mongodb_connection_string
+
+JWT_SECRET=your_secret_key
+
+GEMINI_API_KEY=your_gemini_api_key
+```
+
+---
+
+## Run Backend
+
+```bash
+cd backend
+
 npm run dev
 ```
 
 ---
 
-### MongoDB Setup (Optional)
+## Run Frontend
 
-The app ships with an **in-memory fallback** so it works without MongoDB.  
-If you want full persistence:
+```bash
+cd frontend
 
-1. Install MongoDB locally or use [MongoDB Atlas](https://cloud.mongodb.com)
-2. Edit `backend/.env`:
-   ```
-   MONGO_URI=mongodb://localhost:27017/yojana-setu
-   # or your Atlas connection string
-   ```
-3. The database is **auto-seeded** on first run — no manual import needed.
-
----
-
-## 🔌 API Endpoints
-
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/api/schemes` | All schemes (supports `?search=keyword`) |
-| `GET` | `/api/schemes/:id` | Single scheme by ID |
-| `POST` | `/api/schemes/filter` | Filter by user profile |
-| `GET` | `/api/health` | Health check |
-
-### POST `/api/schemes/filter` — Request Body
-
-```json
-{
-  "age": 24,
-  "gender": "Female",
-  "annualIncome": 150000,
-  "state": "Uttar Pradesh",
-  "occupation": "Student",
-  "category": "OBC"
-}
+npm run dev
 ```
 
 ---
 
-## 🎨 Color Palette
+# 🎨 UI Features
 
-| Name | Hex | Usage |
-|---|---|---|
-| Navy | `#0f1780` | Primary brand, headings |
-| Saffron | `#ff7800` | Accents, CTAs |
-| White | `#ffffff` | Backgrounds |
-| Slate | `#64748b` | Body text |
-
----
-
-## 📋 Government Schemes Included
-
-1. PM Kisan Samman Nidhi — 🌾 Agriculture
-2. PM Ujjwala Yojana — 🔥 Women Welfare
-3. National Scholarship Portal — 📚 Education
-4. Ayushman Bharat PM-JAY — 🏥 Health
-5. PM Awas Yojana (Urban) — 🏠 Housing
-6. Beti Bachao Beti Padhao — 👧 Women Welfare
-7. PM Mudra Yojana — 💼 Entrepreneurship
-8. Post Matric Scholarship (SC) — 🎓 Education
-9. Startup India Seed Fund — 🚀 Entrepreneurship
-10. Sukanya Samriddhi Yojana — 💰 Women Welfare
-11. PM Kaushal Vikas Yojana — ⚙️ Skill Development
-12. National Old Age Pension — 👴 Social Security
-13. Atal Pension Yojana — 🛡️ Social Security
-14. Dr. Ambedkar Scholarship (OBC) — 📖 Education
-15. PM Jan Dhan Yojana — 🏦 Financial Inclusion
+* Government-inspired UI
+* Responsive Layout
+* Hero Banner
+* Smart Filtering
+* Search Bar
+* Favourite Button
+* Animated Components
+* Clean Cards
+* Modern Typography
+* Fast Loading Experience
 
 ---
 
-## ⚠️ Disclaimer
+# 🔒 Authentication Flow
 
-Yojana Setu is an educational / demo project. All scheme data is for
-demonstration purposes only. For official information, visit the respective
-government portals.
+1. Register Account
+2. Login
+3. Receive JWT Token
+4. Store Token Securely
+5. Access Protected APIs
+6. Save Favourite Schemes
+7. Persistent Login Session
 
 ---
 
-*Built with ❤️ for every Indian*
+# 📈 Future Improvements
+
+* Email Verification
+* Forgot Password
+* Admin Dashboard
+* Scheme Application Tracking
+* AI Chatbot Assistant
+* Multi-language Support
+* Notification System
+* Scheme Comparison
+* User Profile Dashboard
+
+---
+
+# 🛡️ Disclaimer
+
+This project is developed for educational purposes. Government scheme information is intended for demonstration only. Users should verify eligibility and application details through the official Government of India portals.
+
+---
+
+# 👨‍💻 Author
+
+**Anuj Kumar Saxena**
+
+* B.Tech Computer Science Student
+* MERN Stack Developer
+* LeetCode Enthusiast
+
+GitHub:
+https://github.com/Anuj-Saxena0014
+
+---
+
+## ⭐ If you like this project, consider giving it a star on GitHub!
