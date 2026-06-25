@@ -12,6 +12,17 @@ const api = axios.create({
 });
 
 // ── Interceptors ──────────────────────────────────────────────────────────────
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
 api.interceptors.response.use(
   (res) => res,
   (err) => {
@@ -31,8 +42,8 @@ export const getAllSchemes = async (search = "") => {
 };
 
 /** Fetch detailed info about a specific scheme by name (via Gemini AI) */
-export const getSchemeDetails = async (schemeName) => {
-  const { data } = await api.post("/schemes/details", { name: schemeName });
+export const getSchemeDetails = async (id) => {
+  const { data } = await api.get(`/schemes/${id}`);
   return data;
 };
 
@@ -48,6 +59,18 @@ export const getSchemeById = async (id) => {
  */
 export const filterSchemes = async (filters) => {
   const { data } = await api.post("/schemes/filter", filters);
+  return data;
+};
+
+/** Get user favourites from backend */
+export const getUserFavourites = async () => {
+  const { data } = await api.get("/auth/favourites");
+  return data;
+};
+
+/** Toggle a scheme in user favourites */
+export const toggleUserFavourite = async (schemeId) => {
+  const { data } = await api.post("/auth/favourites/toggle", { schemeId });
   return data;
 };
 

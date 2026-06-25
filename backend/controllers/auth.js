@@ -356,3 +356,64 @@ exports.resetPassword = async (req, res) => {
     });
   }
 };
+
+// ── GET FAVOURITES ─────────────────────────────────────────────────────────
+exports.getFavourites = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).populate("favourites");
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+    
+    // Convert array of populated schemes to same format frontend expects
+    res.status(200).json({
+      success: true,
+      favourites: user.favourites
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message || "Error fetching favourites",
+    });
+  }
+};
+
+// ── TOGGLE FAVOURITE ───────────────────────────────────────────────────────
+exports.toggleFavourite = async (req, res) => {
+  try {
+    const { schemeId } = req.body;
+    if (!schemeId) {
+      return res.status(400).json({ success: false, message: "Scheme ID is required" });
+    }
+
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    const schemeIndex = user.favourites.indexOf(schemeId);
+    let added = false;
+    if (schemeIndex === -1) {
+      // Add to favourites
+      user.favourites.push(schemeId);
+      added = true;
+    } else {
+      // Remove from favourites
+      user.favourites.splice(schemeIndex, 1);
+      added = false;
+    }
+
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      added,
+      message: added ? "Added to favourites" : "Removed from favourites"
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message || "Error toggling favourite",
+    });
+  }
+};

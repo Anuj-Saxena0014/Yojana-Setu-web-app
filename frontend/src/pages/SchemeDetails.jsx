@@ -34,8 +34,7 @@ export default function SchemeDetails() {
       try {
         // The :id param is a slug like "pm-kisan-samman-nidhi"
         // Convert slug to readable name for Gemini lookup
-        const schemeName = decodeURIComponent(id).replace(/-/g, " ");
-        const data = await getSchemeDetails(schemeName);
+        const data = await getSchemeDetails(id);
         setScheme(data.data);
       } catch (err) {
         setError(err.message || "Failed to load scheme details. Please try again.");

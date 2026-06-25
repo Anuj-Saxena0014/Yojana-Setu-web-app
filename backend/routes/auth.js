@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const express = require("express");
-const { signup, login, getMe, forgotPassword, resetPassword } = require("../controllers/auth");
+const { signup, login, getMe, forgotPassword, resetPassword, getFavourites, toggleFavourite } = require("../controllers/auth");
 const authMiddleware = require("../middleware/auth");
 
 const router = express.Router();
@@ -30,5 +30,9 @@ router.post("/logout", (req, res) => {
     message: "Logged out successfully",
   });
 });
+
+// ── FAVOURITES ─────────────────────────────────────────────────────────────
+router.get("/favourites", authMiddleware, getFavourites);
+router.post("/favourites/toggle", authMiddleware, toggleFavourite);
 
 module.exports = router;

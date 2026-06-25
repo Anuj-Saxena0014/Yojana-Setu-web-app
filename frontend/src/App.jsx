@@ -6,6 +6,7 @@ import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { FavouritesProvider } from "./context/FavouritesContext";
 import { AuthProvider } from "./context/AuthContext";
+import { Toaster } from "react-hot-toast";
 
 import Navbar      from "./components/Navbar";
 import HeroSlider  from "./components/HeroSlider";
@@ -59,6 +60,7 @@ export default function App() {
   return (
     <AuthProvider>
       <FavouritesProvider>
+        <Toaster position="top-right" />
         <AppContent />
       </FavouritesProvider>
     </AuthProvider>

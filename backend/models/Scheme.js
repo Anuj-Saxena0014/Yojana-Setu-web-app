@@ -33,6 +33,9 @@ const SchemeSchema = new mongoose.Schema(
     launchDate: { type: Date, default: null },
     isActive: { type: Boolean, default: true },
     lastVerified: { type: Date, default: Date.now },
+    needsVerification : {
+      type : Boolean , default : false,
+    },
   },
   { timestamps: true }
 );

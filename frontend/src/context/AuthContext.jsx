@@ -93,20 +93,25 @@ export function AuthProvider({ children }) {
 
   // Logout function
   const logout = async () => {
-    try {
-      await api.post("/auth/logout", null, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-    } catch (error) {
-      console.error("Error during logout:", error);
-    }
+  try {
+    await api.post("/auth/logout", null, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  } catch (error) {
+    console.error("Error during logout:", error);
+  }
 
-    localStorage.removeItem("token");
-    setToken(null);
-    setUser(null);
-  };
+  // Clear auth
+  localStorage.removeItem("token");
+
+  // Clear user-specific data
+  localStorage.removeItem("ys_favourites");
+
+  setToken(null);
+  setUser(null);
+};
 
   const value = {
     user,
