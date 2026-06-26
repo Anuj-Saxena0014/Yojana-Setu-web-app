@@ -6,9 +6,11 @@ import axios from "axios";
 
 // Base URL uses Vite proxy in dev, so "/api" works for both environments.
 const api = axios.create({
-  baseURL: "/api",
-  timeout: 30000,   // 30s timeout — Gemini AI can take 3-8s to respond
-  headers: { "Content-Type": "application/json" },
+  baseURL: import.meta.env.VITE_API_URL || "/api",
+  timeout: 30000,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 // ── Interceptors ──────────────────────────────────────────────────────────────
