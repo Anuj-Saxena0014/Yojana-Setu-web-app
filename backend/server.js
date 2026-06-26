@@ -8,6 +8,7 @@ const cors = require("cors");
 const connectDB = require("./middleware/db");
 const schemesRouter = require("./routes/schemes");
 const authRouter = require("./routes/auth");
+const aiRouter = require("./routes/ai");
 const Scheme = require("./models/Scheme");
 const seedDatabase = require("./data/seed");
 const { startExpiryService } = require("./services/schemeExpiryService");
@@ -39,6 +40,7 @@ connectDB().then(async () => {
 // ── Routes ───────────────────────────────────────────────────────────────────
 app.use("/api/schemes", schemesRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/ai", aiRouter);
 
 // Health check
 app.get("/api/health", (req, res) =>
@@ -65,12 +67,15 @@ app.listen(PORT, () => {
   console.log(`\n🌐  Yojana Setu API running at http://localhost:${PORT}`);
   console.log(`🤖  Gemini AI: ${process.env.GEMINI_API_KEY ? "Enabled ✅" : "Not configured ❌"}`);
   console.log(`📋  Endpoints:`);
-  console.log(`    GET  /api/schemes          (Gemini AI — popular schemes)`);
-  console.log(`    GET  /api/schemes/:id      (Gemini AI — scheme by slug)`);
-  console.log(`    POST /api/schemes/filter   (Gemini AI — eligibility match)`);
-  console.log(`    POST /api/schemes/details  (Gemini AI — scheme details)`);
+  console.log(`    GET  /api/schemes          (MongoDB)`);
+  console.log(`    GET  /api/schemes/:id      (MongoDB)`);
+  console.log(`    POST /api/schemes/filter   (MongoDB Rule Engine)`);
+  console.log(`    POST /api/schemes/details  (MongoDB)`);
+  console.log(`    POST /api/ai/explain       (Gemini AI)`);
+  console.log(`    POST /api/ai/chat          (Gemini AI)`);
   console.log(`    POST /api/auth/signup      (MongoDB)`);
   console.log(`    POST /api/auth/login       (MongoDB)`);
   console.log(`    GET  /api/auth/me          (MongoDB)`);
   console.log(`    GET  /api/health\n`);
 });
+

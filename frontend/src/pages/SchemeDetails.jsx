@@ -86,7 +86,7 @@ export default function SchemeDetails() {
       ) : (
         <div className="mb-4 px-4 py-2.5 bg-blue-50 border border-blue-200 rounded-xl flex items-center gap-2 text-xs text-blue-700 font-body">
           <span>🤖</span>
-          <span>Matching and relevance ranked using Google Gemini AI. Always cross-verify on official government portals.</span>
+          <span>Matching and relevance powered by rule-based engine. Always cross-verify on official government portals.</span>
         </div>
       )}
 

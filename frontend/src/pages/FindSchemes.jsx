@@ -170,7 +170,7 @@ console.log("visibleSchemes:", visibleSchemes.length);
 
           <div className="flex gap-2">
             <span className="badge bg-blue-50 text-blue-600 border border-blue-200 text-xs flex items-center gap-1">
-              <span>🤖</span> Powered by Gemini AI
+              <span>🧠</span>  Smart Eligibility Engine
             </span>
             {mode === "filtered" && (
               <span className="badge bg-saffron-100 text-saffron-700 text-xs">

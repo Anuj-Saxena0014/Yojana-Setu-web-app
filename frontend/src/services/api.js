@@ -34,14 +34,14 @@ api.interceptors.response.use(
 
 // ── API helpers ───────────────────────────────────────────────────────────────
 
-/** Fetch all/popular schemes from Gemini AI; optionally pass a search string */
+/** Fetch all/popular schemes; optionally pass a search string */
 export const getAllSchemes = async (search = "") => {
   const params = search ? { search } : {};
   const { data } = await api.get("/schemes", { params });
   return data;
 };
 
-/** Fetch detailed info about a specific scheme by name (via Gemini AI) */
+/** Fetch detailed info about a specific scheme by name */
 export const getSchemeDetails = async (id) => {
   const { data } = await api.get(`/schemes/${id}`);
   return data;
@@ -54,7 +54,7 @@ export const getSchemeById = async (id) => {
 };
 
 /**
- * Filter schemes based on user profile via Gemini AI.
+ * Filter schemes based on user profile.
  * @param {{ age, gender, annualIncome, state, occupation, category }} filters
  */
 export const filterSchemes = async (filters) => {
