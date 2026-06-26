@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 
 /**
  * Connects to MongoDB.
- * Schemes are now fetched from Gemini AI — MongoDB is used only for user auth.
+ * Required for schemes and user auth.
  */
 const connectDB = async () => {
   try {
@@ -14,9 +14,9 @@ const connectDB = async () => {
     console.log(`✅  MongoDB connected: ${conn.connection.host}`);
   } catch (err) {
     console.error("❌  MongoDB connection error:", err.message);
-    console.log("⚠️   Auth features (login/signup) require MongoDB.");
-    console.log("     Scheme discovery via Gemini AI will still work.");
-    // Don't crash — Gemini AI endpoints still work without MongoDB.
+    console.log("⚠️   Application requires MongoDB to function.");
+    // Don't crash immediately but log the failure
+
   }
 };
 
