@@ -24,9 +24,9 @@
 
 # 🚀 Live Demo
 
-**Frontend:** *(Add your Vercel URL)*
+**Frontend:** [Yojana Setu Web App](https://yojana-setu-web-app.vercel.app/)
 
-**Backend API:** *(Add your Render URL)*
+**Backend API:** [API Endpoint](https://yojana-setu-web-app.onrender.com/api)
 
 ---
 
